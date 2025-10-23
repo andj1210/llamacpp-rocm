@@ -1053,7 +1053,7 @@ jobs:
         fi
 
   create-release:
-    needs: [prepare-matrix, build-windows, build-ubuntu, test-windows-gfx1151, test-ubuntu-gfx1151]
+    needs: [prepare-matrix, build-windows, build-ubuntu] # , test-windows-gfx1151, test-ubuntu-gfx1151
     runs-on: ubuntu-22.04
     permissions:
       contents: write

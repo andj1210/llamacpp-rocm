@@ -353,10 +353,10 @@ jobs:
           # Copy files matching patterns and specific names
           $filesToCopy = @(
             "amdhip64_*.dll",
-            "amd_comgr*.dll", 
-            "libhipblas.dll",
+            "amd_comgr*.dll",
             "rocblas.dll",
             "rocsolver.dll",
+            "hipblas.dll",
             "hipblaslt.dll",
             "libhipblaslt.dll"
           )
@@ -1164,7 +1164,7 @@ jobs:
     - name: Create Release
       if: steps.check-tag.outputs.tag_exists == 'false'
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ github.token }}
       run: |
         TAG="${{ steps.generate-tag.outputs.tag }}"
         # Get ROCm version from either Windows or Ubuntu build (whichever succeeded)

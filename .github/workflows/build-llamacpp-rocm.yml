@@ -389,6 +389,20 @@ jobs:
           } else {
             Write-Host "Warning: rocblas\library folder not found at: $rocblasLibPath"
           }
+
+          $hipblasltPath = Join-Path $rocmBinPath "hipblaslt\library"
+          if (Test-Path $hipblasltPath) {
+            Write-Host "Copying hipblaslt\library folder and all contents..."
+            $destHipblasltPath = Join-Path $buildBinPath "hipblaslt\library"
+            Copy-Item -Path $hipblasltPath -Destination $destHipblasltPath -Recurse -Force
+            Write-Host "Copied: hipblaslt\library folder with all contents"
+            
+            # List the contents of the copied hipblaslt\library folder
+            Write-Host "Contents of hipblaslt\library:"
+            Get-ChildItem $destHipblasltPath -Recurse | Select-Object FullName, Length | Format-Table -AutoSize
+          } else {
+            Write-Host "Warning: rocblas\library folder not found at: $hipblasltPath"
+          }
           
           Write-Host "ROCm core files successfully copied to build directory"
         } else {

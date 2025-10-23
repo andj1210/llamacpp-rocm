@@ -863,6 +863,7 @@ jobs:
     runs-on: [stx-halo, Windows]
     needs: [prepare-matrix, build-windows]
     if: |
+      false &&
       needs.build-windows.result == 'success' &&
       contains(github.event.inputs.gfx_target || 'gfx1151,gfx120X,gfx110X', 'gfx1151') &&
       needs.prepare-matrix.outputs.should_build_windows == 'true'
@@ -964,6 +965,7 @@ jobs:
     runs-on: [stx-halo, Linux]
     needs: [prepare-matrix, build-ubuntu]
     if: |
+      false &&
       needs.build-ubuntu.result == 'success' &&
       contains(github.event.inputs.gfx_target || 'gfx1151,gfx120X,gfx110X', 'gfx1151') &&
       needs.prepare-matrix.outputs.should_build_ubuntu == 'true'
